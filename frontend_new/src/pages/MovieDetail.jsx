@@ -265,7 +265,7 @@ export default function MovieDetail() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Only show these buttons for current movies */}
           {movie.tag === 'current' && (
             <>
@@ -274,6 +274,12 @@ export default function MovieDetail() {
                 className="btn btn-primary"
               >
                 Public Pulse Analytics
+              </Link>
+              <Link
+                to={`/movies/${id}/facebook-campaign`}
+                className="btn btn-primary"
+              >
+                Facebook Campaign
               </Link>
               <Link
                 to={`/movies/${id}/competitors`}

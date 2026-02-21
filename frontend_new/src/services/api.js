@@ -72,4 +72,20 @@ export const releaseStrategyAPI = {
   getReleaseDateDecision: (data) => api.post('/release-strategy/release-date-decision', data),
 }
 
+// Facebook Campaign endpoints
+export const facebookCampaignAPI = {
+  generateContent: (movieId, campaignType) =>
+    api.post(`/facebook-campaign/${movieId}/generate-content`, { campaign_type: campaignType }),
+  createPost: (movieId, postData) =>
+    api.post(`/facebook-campaign/${movieId}/create-post`, postData),
+  getCampaignSchedule: (movieId, durationDays = 30) =>
+    api.get(`/facebook-campaign/${movieId}/campaign-schedule?campaign_duration_days=${durationDays}`),
+  getMoviePosts: (movieId) =>
+    api.get(`/facebook-campaign/${movieId}/posts`),
+  getPostInsights: (postId) =>
+    api.get(`/facebook-campaign/post/${postId}/insights`),
+  deletePost: (postId) =>
+    api.delete(`/facebook-campaign/post/${postId}`),
+}
+
 export default api

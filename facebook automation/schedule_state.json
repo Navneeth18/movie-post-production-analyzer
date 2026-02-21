@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "used_caption_hashes": [
+    "10a912c0708c89ee8f4d7ebce4f4aa935afbc428d4efeb4a2f54e9c5a6c9e68d",
+    "3d0534a0d28fa6b11578570e777d94293aefcfbb3bdaea178de44ae974bf22fc",
+    "4ef15e9adf0e242f29377b47bd0aca667a6d34439bc21859987691690c82faa5",
+    "56d7384923f1b6692af8914cecfb885625f23895aa7a66757f1805786cede629",
+    "8a2cf16af02206e579594523ca02a92b3b1735f438c5dafe07972d85eb6371a6",
+    "90537ab4d2be5e7c60ad7338a1f1d1f0873b5ded050d3a53814e9d92b8dbd3b5",
+    "b54646a8011660f25aa889e3702dbd7e8630a24ec3a45989b9fb5489b0724ca9",
+    "c18c2d3a75f3dd4c05940220f3c1eb08bf2d8626dab95df94bd75cde4a72a05f",
+    "e690a246a618230b2256d7f0c3e5b2e0e4d8d9905e20db56e0d2f1b2b8d2ddf3"
+  ],
+  "jobs": [
+    {
+      "job_id": "2a5a29c656f38b0d:202602220900",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-22T09:00:00",
+      "status": "pending",
+      "caption": "Lights, camera, goosebumps! 🎬 Dhurandhar 2 is bringing pure Action energy in theatres on 2026-03-19. Starring Ranveer Singh and Sara Arjun, crafted by Adithya Dhar. Are you ready for the big-screen blast? 🔥 Tag your movie squad now! #MovieNight #ComingSoon #CinemaLovers #MustWatch",
+      "caption_hash": "b54646a8011660f25aa889e3702dbd7e8630a24ec3a45989b9fb5489b0724ca9",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-1-slot-1",
+      "created_at": "2026-02-21T04:01:27.668879"
+    },
+    {
+      "job_id": "2a5a29c656f38b0d:202602222100",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-22T21:00:00",
+      "status": "pending",
+      "caption": "This is not just a film, it's an event! 🌟 Dhurandhar 2 starring Ranveer Singh and Sara Arjun, directed by Adithya Dhar, brings intense Action storytelling in theatres on 2026-03-19. Comment 'READY' if you're in! 👇 #FilmCommunity #TheatreExperience #NewRelease #MustSee",
+      "caption_hash": "10a912c0708c89ee8f4d7ebce4f4aa935afbc428d4efeb4a2f54e9c5a6c9e68d",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-1-slot-2",
+      "created_at": "2026-02-21T04:01:27.701679"
+    },
+    {
+      "job_id": "2a5a29c656f38b0d:202602230900",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-23T09:00:00",
+      "status": "pending",
+      "caption": "The wait ends with Dhurandhar 2! 🍿 A powerful Action spectacle featuring Ranveer Singh and Sara Arjun, directed by Adithya Dhar in theatres on 2026-03-19. Hit like if this is on your watchlist! 🚀 #NewMovie #BigScreenMagic #FilmBuzz #WeekendPlans",
+      "caption_hash": "3d0534a0d28fa6b11578570e777d94293aefcfbb3bdaea178de44ae974bf22fc",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-2-slot-1",
+      "created_at": "2026-02-21T04:01:27.732890"
+    },
+    {
+      "job_id": "2a5a29c656f38b0d:202602232100",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-23T21:00:00",
+      "status": "pending",
+      "caption": "Posters up, hype on! 🎥 Dhurandhar 2 is set to redefine Action entertainment with Ranveer Singh + Sara Arjun, directed by Adithya Dhar in theatres on 2026-03-19. Book your excitement early and follow for updates! 🙌 #CinemaUpdate #FilmFans #UpcomingRelease #MovieAlert",
+      "caption_hash": "90537ab4d2be5e7c60ad7338a1f1d1f0873b5ded050d3a53814e9d92b8dbd3b5",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-2-slot-2",
+      "created_at": "2026-02-21T04:01:27.767494"
+    },
+    {
+      "job_id": "2a5a29c656f38b0d:202602240900",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-24T09:00:00",
+      "status": "pending",
+      "caption": "An epic cinematic ride is loading... ⚡ Dhurandhar 2 delivers unforgettable Action vibes with Ranveer Singh and Sara Arjun under Adithya Dhar's vision in theatres on 2026-03-19. Drop a ❤️ if you're excited and share this with friends! #Blockbuster #MoviePromo #ComingSoon #WatchThis",
+      "caption_hash": "56d7384923f1b6692af8914cecfb885625f23895aa7a66757f1805786cede629",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-3-slot-1",
+      "created_at": "2026-02-21T04:01:27.793756"
+    },
+    {
+      "job_id": "2a5a29c656f38b0d:202602242100",
+      "movie_key": "2a5a29c656f38b0d",
+      "run_at": "2026-02-24T21:00:00",
+      "status": "pending",
+      "caption": "Dhurandhar 2 is coming in theatres on 2026-03-19! 🎬 A Action cinematic experience starring Ranveer Singh and Sara Arjun, directed by Adithya Dhar. Stay tuned and spread the word! #20260221040127 #ComingSoon #MovieBuzz",
+      "caption_hash": "8a2cf16af02206e579594523ca02a92b3b1735f438c5dafe07972d85eb6371a6",
+      "image_path": "poster.png",
+      "regenerate_image": false,
+      "variation": "day-3-slot-2",
+      "created_at": "2026-02-21T04:01:27.827584"
+    }
+  ],
+  "immediate_posts": [
+    {
+      "movie_key": "2a5a29c656f38b0d",
+      "posted_at": "2026-02-21T04:01:27.638892",
+      "caption_hash": "c18c2d3a75f3dd4c05940220f3c1eb08bf2d8626dab95df94bd75cde4a72a05f",
+      "image_path": "poster.png",
+      "facebook_response": {
+        "id": "122098734711277266",
+        "post_id": "1017037698154085_122098734741277266"
+      }
+    },
+    {
+      "movie_key": "a5741f61308b518f",
+      "posted_at": "2026-02-21T04:59:38.008342",
+      "caption_hash": "e690a246a618230b2256d7f0c3e5b2e0e4d8d9905e20db56e0d2f1b2b8d2ddf3",
+      "image_path": "poster.png",
+      "facebook_response": {
+        "id": "122098774905277266",
+        "post_id": "1017037698154085_122098774953277266"
+      }
+    },
+    {
+      "movie_key": "a5741f61308b518f",
+      "posted_at": "2026-02-21T05:04:50.299910",
+      "caption_hash": "4ef15e9adf0e242f29377b47bd0aca667a6d34439bc21859987691690c82faa5",
+      "image_path": "poster.png",
+      "facebook_response": {
+        "id": "122098782267277266",
+        "post_id": "1017037698154085_122098782303277266"
+      }
+    }
+  ]
+}

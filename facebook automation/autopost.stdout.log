@@ -1,0 +1,6 @@
+2026-02-21 02:06:45,219 [ERROR] Permission error validating token (code 10): (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details.. This can happen even when posting permissions are present.
+2026-02-21 02:06:45,227 [WARNING] Startup validation could not confirm read permissions. Continuing anyway; posts will be attempted at scheduled times.
+2026-02-21 02:06:45,229 [INFO] Scheduled post at 02:05 (message preview: Good morning! This is an automated scheduled post.)
+2026-02-21 02:06:45,231 [INFO] Scheduled post at 13:30 (message preview: Read this useful article.)
+2026-02-21 02:06:45,232 [INFO] Scheduled post at 18:00 (message preview: Check out our latest banner.)
+2026-02-21 02:06:45,233 [INFO] Scheduler started. Waiting for tasks...
