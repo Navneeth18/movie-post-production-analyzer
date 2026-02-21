@@ -119,6 +119,15 @@ export default function Movies() {
                 <div className="bg-green-50 p-2 rounded">
                   <p className="text-xs text-gray-600">HWS</p>
                   <p className="text-lg font-bold text-green-600">{movie.hws_score?.toFixed(0) || 'N/A'}</p>
+                  {movie.category && (
+                    <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-bold mt-1 ${
+                      movie.category === 'BIG' ? 'bg-purple-100 text-purple-800' :
+                      movie.category === 'MEDIUM' ? 'bg-blue-100 text-blue-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                      {movie.category}
+                    </span>
+                  )}
                 </div>
               </div>
 

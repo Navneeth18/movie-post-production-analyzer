@@ -155,6 +155,15 @@ export default function Dashboard() {
                       <div>
                         HWS: <span className="font-semibold">{movie.hws_score?.toFixed(0) || 'N/A'}</span>
                       </div>
+                      {movie.category && (
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                          movie.category === 'BIG' ? 'bg-purple-100 text-purple-800' :
+                          movie.category === 'MEDIUM' ? 'bg-blue-100 text-blue-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          {movie.category}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>

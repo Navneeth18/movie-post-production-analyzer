@@ -164,7 +164,7 @@ async def get_my_historical_movies(current_user: dict = Depends(get_current_user
         for m in movies
     ]
 
-@router.get("/all", response_model=List[MovieResponse])
+@router.get("/all", response_model=List[dict])
 async def get_all_movies(
     tag: str = "current",
     current_user: dict = Depends(get_current_user)
@@ -172,16 +172,48 @@ async def get_all_movies(
     """Get all movies in the system (for competitor analysis)"""
     db = get_database()
     
-    query = {"tag": tag}
-    if tag == "current":
-        query["status"] = {"$in": ["awaiting-release", "released"]}
-    
-    movies = await db.movies.find(query).to_list(200)
-    
-    return [
-        MovieResponse(id=str(m["_id"]), **{k: v for k, v in m.items() if k != "_id"})
-        for m in movies
-    ]
+    try:
+        query = {"tag": tag}
+        if tag == "current":
+            query["status"] = {"$in": ["awaiting-release", "released"]}
+        
+        movies = await db.movies.find(query).to_list(200)
+        
+        result = []
+        for m in movies:
+            try:
+                result.append({
+                    "id": str(m["_id"]),
+                    "title": m.get("title", "Unknown"),
+                    "director": m.get("director", "Unknown"),
+                    "genres": m.get("genres", []),
+                    "languages": m.get("languages", []),
+                    "budget": m.get("budget"),
+                    "budget_currency": m.get("budget_currency", "INR"),
+                    "release_date": m.get("release_date"),
+                    "region": m.get("region"),
+                    "cast": m.get("cast", []),
+                    "producer_id": m.get("producer_id", ""),
+                    "status": m.get("status", "unknown"),
+                    "tag": m.get("tag", "current"),
+                    "hws_score": m.get("hws_score"),
+                    "category": m.get("category"),
+                    "market_action": m.get("market_action"),
+                    "cast_score": m.get("cast_score"),
+                    "created_at": m.get("created_at"),
+                    "updated_at": m.get("updated_at")
+                })
+            except Exception as e:
+                print(f"Error processing movie {m.get('_id')}: {e}")
+                continue
+        
+        return result
+        
+    except Exception as e:
+        print(f"Error in get_all_movies: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Failed to fetch movies: {str(e)}")
 
 @router.get("/{movie_id}", response_model=MovieResponse)
 async def get_movie(movie_id: str, current_user: dict = Depends(get_current_user)):

@@ -266,24 +266,38 @@ export default function MovieDetail() {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link
-            to={`/movies/${id}/public-pulse`}
-            className="btn btn-primary"
-          >
-            Public Pulse Analytics
-          </Link>
-          <Link
-            to={`/movies/${id}/competitors`}
-            className="btn btn-secondary"
-          >
-            Analyze Competitors
-          </Link>
-          <Link
-            to={`/movies/${id}/release-analysis`}
-            className="btn btn-secondary"
-          >
-            Release Strategy
-          </Link>
+          {/* Only show these buttons for current movies */}
+          {movie.tag === 'current' && (
+            <>
+              <Link
+                to={`/movies/${id}/public-pulse`}
+                className="btn btn-primary"
+              >
+                Public Pulse Analytics
+              </Link>
+              <Link
+                to={`/movies/${id}/competitors`}
+                className="btn btn-secondary"
+              >
+                Analyze Competitors
+              </Link>
+              <Link
+                to={`/movies/${id}/release-analysis`}
+                className="btn btn-secondary"
+              >
+                Release Strategy
+              </Link>
+            </>
+          )}
+          
+          {/* Show message for historical movies */}
+          {movie.tag === 'past' && (
+            <div className="col-span-3 text-center py-4 bg-gray-50 rounded-lg">
+              <p className="text-gray-600">
+                This is a historical movie. Public Pulse, Competitor Analysis, and Release Strategy features are only available for current movies.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
