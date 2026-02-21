@@ -60,7 +60,8 @@
 │   MongoDB    │ │ ChromaDB│ │ External APIs │
 │  (Primary)   │ │ (Vector)│ │ - YouTube     │
 │              │ │         │ │ - Ollama      │
-│              │ │         │ │ - Pollinations│
+│              │ │         │ │ - Pollinations|
+│              | |         | | - FaceBook    |
 └──────────────┘ └─────────┘ └───────────────┘
 ```
 
