@@ -98,4 +98,18 @@ export const budgetAPI = {
     api.post(`/budget/${movieId}/budget-plan/optimize`, data),
 }
 
+// Data Analytics endpoints
+export const dataAnalyticsAPI = {
+  getGradePerformance: () =>
+    api.get('/data-analytics/grade-performance'),
+  getGenreTimeline: () =>
+    api.get('/data-analytics/genre-timeline'),
+  getTalentMatrix: () =>
+    api.get('/data-analytics/talent-matrix'),
+  getDemographicHeatmap: () =>
+    api.get('/data-analytics/demographic-heatmap'),
+  getAllAnalytics: () =>
+    api.get('/data-analytics/all'),
+}
+
 export default api

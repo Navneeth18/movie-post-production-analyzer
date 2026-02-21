@@ -1,0 +1,43 @@
+================================================================================
+EXISTING PRODUCER ACCOUNTS
+Film Intel Platform - Current Movie Projects
+Competitive Release Window: Feb 23 - March 29, 2026
+================================================================================
+
+LOGIN URL: http://localhost:5173/login
+
+PRODUCERS WITH NEW MOVIES:
+--------------------------------------------------------------------------------
+1. Sukumar
+   Email: sukumar@filmproductions.com
+   Username: sukumar
+   Database ID: 69993b09fda13eda9f6c8c66
+
+2. Dil Raju
+   Email: dilraju@filmproductions.com
+   Username: dilraju
+   Database ID: 69993b0afda13eda9f6c8c67
+
+3. BVSN Prasad
+   Email: bvsnprasad@filmproductions.com
+   Username: bvsnprasad
+   Database ID: 69993b0bfda13eda9f6c8c6a
+
+4. Prasad Devineni
+   Email: prasaddevineni@filmproductions.com
+   Username: prasaddevineni
+   Database ID: 69993b0afda13eda9f6c8c69
+
+5. Sahu Garapati
+   Email: sahugarapati@filmproductions.com
+   Username: sahugarapati
+   Database ID: 69993b0afda13eda9f6c8c68
+
+================================================================================
+NOTES:
+- These are EXISTING producer accounts
+- Movies are assigned to these existing accounts
+- All movies release between Feb 23 - March 29, 2026
+- Login with the existing credentials for these producers
+- Each producer has 3-4 current movie projects
+================================================================================

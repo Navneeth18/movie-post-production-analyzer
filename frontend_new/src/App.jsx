@@ -11,6 +11,7 @@ import MovieDetail from './pages/MovieDetail'
 import PublicPulse from './pages/PublicPulse'
 import FacebookCampaign from './pages/FacebookCampaign'
 import BudgetPlanning from './pages/BudgetPlanning'
+import DataAnalytics from './pages/DataAnalytics'
 import CompetitorAnalysis from './pages/CompetitorAnalysis'
 import ReleaseDateAnalysis from './pages/ReleaseDateAnalysis'
 import Layout from './components/Layout'
@@ -43,6 +44,7 @@ function App() {
           <Route path="movies/:id/budget-planning" element={<BudgetPlanning />} />
           <Route path="movies/:id/competitors" element={<CompetitorAnalysis />} />
           <Route path="movies/:id/release-analysis" element={<ReleaseDateAnalysis />} />
+          <Route path="analytics" element={<DataAnalytics />} />
         </Route>
       </Routes>
     </BrowserRouter>

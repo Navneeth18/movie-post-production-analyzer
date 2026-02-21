@@ -1,5 +1,5 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom'
-import { Film, LogOut, Home, Plus } from 'lucide-react'
+import { Film, LogOut, Home, Plus, BarChart3 } from 'lucide-react'
 import { useAuthStore } from '../store/authStore'
 
 export default function Layout() {
@@ -30,6 +30,10 @@ export default function Layout() {
                 <Link to="/movies" className="flex items-center space-x-1 px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">
                   <Film className="w-4 h-4" />
                   <span>My Movies</span>
+                </Link>
+                <Link to="/analytics" className="flex items-center space-x-1 px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">
+                  <BarChart3 className="w-4 h-4" />
+                  <span>Analytics</span>
                 </Link>
                 <Link to="/movies/create" className="flex items-center space-x-1 px-3 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700">
                   <Plus className="w-4 h-4" />
