@@ -36,4 +36,41 @@
   .label {
     @apply block text-sm font-medium text-gray-700 mb-2;
   }
+
+  /* AI Recommendations Markdown Styling */
+  .ai-recommendations {
+    @apply text-sm leading-relaxed;
+  }
+
+  .ai-recommendations h1 {
+    @apply text-2xl font-bold text-gray-900 mt-6 mb-4 pb-2 border-b-2 border-yellow-500;
+  }
+
+  .ai-recommendations h2 {
+    @apply text-xl font-bold text-gray-900 mt-6 mb-3 pb-2 border-b border-gray-200;
+  }
+
+  .ai-recommendations h3 {
+    @apply text-lg font-semibold text-gray-800 mt-5 mb-2;
+  }
+
+  .ai-recommendations p {
+    @apply text-gray-700 mb-3 leading-relaxed;
+  }
+
+  .ai-recommendations ul {
+    @apply list-disc list-inside ml-4 mb-4 space-y-2;
+  }
+
+  .ai-recommendations li {
+    @apply text-gray-700 leading-relaxed;
+  }
+
+  .ai-recommendations strong {
+    @apply font-semibold text-gray-900;
+  }
+
+  .ai-recommendations code {
+    @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800;
+  }
 }

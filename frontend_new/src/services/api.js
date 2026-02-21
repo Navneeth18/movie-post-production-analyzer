@@ -88,4 +88,14 @@ export const facebookCampaignAPI = {
     api.delete(`/facebook-campaign/post/${postId}`),
 }
 
+// Budget Planning endpoints
+export const budgetAPI = {
+  getBudgetPlan: (movieId) =>
+    api.get(`/budget/${movieId}/budget-plan`),
+  createOrUpdateBudgetPlan: (movieId, data) =>
+    api.post(`/budget/${movieId}/budget-plan`, data),
+  optimizeBudget: (movieId, data) =>
+    api.post(`/budget/${movieId}/budget-plan/optimize`, data),
+}
+
 export default api

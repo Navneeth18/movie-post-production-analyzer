@@ -282,6 +282,12 @@ export default function MovieDetail() {
                 Facebook Campaign
               </Link>
               <Link
+                to={`/movies/${id}/budget-planning`}
+                className="btn btn-primary"
+              >
+                Budget Planning
+              </Link>
+              <Link
                 to={`/movies/${id}/competitors`}
                 className="btn btn-secondary"
               >
