@@ -1,28 +1,56 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, X } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { ArrowLeft } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { movieAPI } from '../services/api'
 
 const GENRE_OPTIONS = ['Action', 'Drama', 'Comedy', 'Thriller', 'Romance', 'Horror', 'Sci-Fi', 'Fantasy', 'Crime', 'Mystery']
 const LANGUAGE_OPTIONS = ['Telugu', 'Hindi', 'Tamil', 'Malayalam', 'Kannada', 'English', 'Bengali', 'Marathi']
 
-export default function CreateMovie() {
+export default function EditMovie() {
+  const { id } = useParams()
   const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
   const [formData, setFormData] = useState({
     title: '',
     director: '',
     genres: [],
     budget: '',
     languages: [],
-    region: 'Pan-India',
+    region: '',
     release_date: '',
     status: 'pre-production',
     cast: []
   })
 
   const [castMember, setCastMember] = useState({ name: '', role: '', star_power: '' })
+
+  useEffect(() => {
+    loadMovie()
+  }, [id])
+
+  const loadMovie = async () => {
+    try {
+      const { data } = await movieAPI.getMovie(id)
+      setFormData({
+        title: data.title,
+        director: data.director,
+        genres: data.genres || [],
+        budget: (data.budget / 10000000).toString(),
+        languages: data.languages || [],
+        region: data.region,
+        release_date: data.release_date ? data.release_date.split('T')[0] : '',
+        status: data.status,
+        cast: data.cast || []
+      })
+    } catch (error) {
+      toast.error('Failed to load movie')
+      navigate('/movies')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const toggleGenre = (genre) => {
     setFormData(prev => ({
@@ -79,37 +107,41 @@ export default function CreateMovie() {
       return
     }
 
-    setLoading(true)
+    setSaving(true)
 
     try {
       const payload = {
         ...formData,
-        budget: parseFloat(formData.budget) * 10000000, // Convert Cr to actual value
+        budget: parseFloat(formData.budget) * 10000000,
         release_date: formData.release_date ? new Date(formData.release_date).toISOString() : null
       }
 
-      const { data } = await movieAPI.createMovie(payload)
-      toast.success('Movie created successfully!')
-      navigate(`/movies/${data.id}`)
+      await movieAPI.updateMovie(id, payload)
+      toast.success('Movie updated successfully!')
+      navigate(`/movies/${id}`)
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Failed to create movie')
+      toast.error(error.response?.data?.detail || 'Failed to update movie')
     } finally {
-      setLoading(false)
+      setSaving(false)
     }
+  }
+
+  if (loading) {
+    return <div className="text-center py-12">Loading...</div>
   }
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <button
-        onClick={() => navigate('/movies')}
+        onClick={() => navigate(`/movies/${id}`)}
         className="flex items-center space-x-2 text-gray-600 hover:text-gray-900"
       >
         <ArrowLeft className="w-5 h-5" />
-        <span>Back to Movies</span>
+        <span>Back to Movie</span>
       </button>
 
       <div className="card">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Create New Movie Project</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-6">Edit Movie Project</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -206,7 +238,6 @@ export default function CreateMovie() {
                 value={formData.region}
                 onChange={(e) => setFormData({...formData, region: e.target.value})}
                 className="input"
-                placeholder="e.g., Pan-India, South India"
                 required
               />
             </div>
@@ -233,6 +264,7 @@ export default function CreateMovie() {
                 <option value="production">Production</option>
                 <option value="post-production">Post-Production</option>
                 <option value="awaiting-release">Awaiting Release</option>
+                <option value="released">Released</option>
               </select>
             </div>
           </div>
@@ -296,14 +328,14 @@ export default function CreateMovie() {
           <div className="flex space-x-4">
             <button
               type="submit"
-              disabled={loading}
+              disabled={saving}
               className="btn btn-primary flex-1"
             >
-              {loading ? 'Creating...' : 'Create Movie'}
+              {saving ? 'Saving...' : 'Save Changes'}
             </button>
             <button
               type="button"
-              onClick={() => navigate('/movies')}
+              onClick={() => navigate(`/movies/${id}`)}
               className="btn btn-secondary"
             >
               Cancel

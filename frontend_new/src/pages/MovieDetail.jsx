@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import { ArrowLeft, Users, TrendingUp, Calendar, Target } from 'lucide-react'
+import { ArrowLeft, Users, TrendingUp, Calendar, Target, Edit } from 'lucide-react'
 import { movieAPI } from '../services/api'
 import toast from 'react-hot-toast'
 import { format } from 'date-fns'
@@ -54,24 +54,46 @@ export default function MovieDetail() {
             <h1 className="text-3xl font-bold text-gray-900">{movie.title}</h1>
             <p className="text-gray-600 mt-2">Directed by {movie.director}</p>
           </div>
-          <span className={`px-4 py-2 rounded-lg text-sm font-medium ${
-            movie.status === 'awaiting-release' ? 'bg-orange-100 text-orange-800' :
-            movie.status === 'production' ? 'bg-green-100 text-green-800' :
-            'bg-gray-100 text-gray-800'
-          }`}>
-            {movie.status}
-          </span>
+          <div className="flex items-center space-x-3">
+            <span className={`px-4 py-2 rounded-lg text-sm font-medium ${
+              movie.status === 'awaiting-release' ? 'bg-orange-100 text-orange-800' :
+              movie.status === 'production' ? 'bg-green-100 text-green-800' :
+              movie.status === 'post-production' ? 'bg-blue-100 text-blue-800' :
+              'bg-gray-100 text-gray-800'
+            }`}>
+              {movie.status.replace('-', ' ')}
+            </span>
+            <Link
+              to={`/movies/${id}/edit`}
+              className="btn btn-secondary flex items-center space-x-2"
+            >
+              <Edit className="w-4 h-4" />
+              <span>Edit</span>
+            </Link>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="space-y-3">
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-gray-600">Genre</span>
-              <span className="font-medium">{movie.genre}</span>
+            <div className="flex items-start justify-between py-2 border-b">
+              <span className="text-gray-600">Genres</span>
+              <div className="flex flex-wrap gap-1 justify-end max-w-xs">
+                {(movie.genres || [movie.genre]).map((genre, idx) => (
+                  <span key={idx} className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-medium">
+                    {genre}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="flex items-center justify-between py-2 border-b">
-              <span className="text-gray-600">Language</span>
-              <span className="font-medium">{movie.language}</span>
+            <div className="flex items-start justify-between py-2 border-b">
+              <span className="text-gray-600">Languages</span>
+              <div className="flex flex-wrap gap-1 justify-end max-w-xs">
+                {(movie.languages || [movie.language]).map((lang, idx) => (
+                  <span key={idx} className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">
+                    {lang}
+                  </span>
+                ))}
+              </div>
             </div>
             <div className="flex items-center justify-between py-2 border-b">
               <span className="text-gray-600">Region</span>
@@ -106,17 +128,16 @@ export default function MovieDetail() {
                 {movie.tag}
               </span>
             </div>
+            <div className="flex items-center justify-between py-2 border-b">
+              <span className="text-gray-600">Created</span>
+              <span className="font-medium text-sm">
+                {format(new Date(movie.created_at), 'MMM dd, yyyy')}
+              </span>
+            </div>
           </div>
         </div>
 
-        {movie.themes && (
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-2">Themes</h3>
-            <p className="text-gray-700">{movie.themes}</p>
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="card bg-blue-50 border border-blue-200">
             <div className="flex items-center space-x-3 mb-2">
               <Users className="w-6 h-6 text-blue-600" />
@@ -131,25 +152,98 @@ export default function MovieDetail() {
           <div className="card bg-green-50 border border-green-200">
             <div className="flex items-center space-x-3 mb-2">
               <TrendingUp className="w-6 h-6 text-green-600" />
-              <h3 className="font-semibold text-gray-900">Historic Score</h3>
+              <h3 className="font-semibold text-gray-900">HWS Score</h3>
             </div>
-            <p className="text-4xl font-bold text-green-600">
-              {movie.historic_score?.toFixed(1) || 'N/A'}
-            </p>
-            <p className="text-sm text-gray-600 mt-1">Director & genre performance</p>
-          </div>
-
-          <div className="card bg-purple-50 border border-purple-200">
-            <div className="flex items-center space-x-3 mb-2">
-              <Target className="w-6 h-6 text-purple-600" />
-              <h3 className="font-semibold text-gray-900">Public Pulse</h3>
+            <div className="flex items-baseline space-x-2">
+              <p className="text-4xl font-bold text-green-600">
+                {movie.hws_score?.toFixed(1) || 'N/A'}
+              </p>
+              {movie.category && (
+                <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                  movie.category === 'BIG' ? 'bg-purple-600 text-white' :
+                  movie.category === 'MEDIUM' ? 'bg-blue-600 text-white' :
+                  'bg-gray-600 text-white'
+                }`}>
+                  {movie.category}
+                </span>
+              )}
             </div>
-            <p className="text-4xl font-bold text-purple-600">
-              {movie.public_pulse_score?.toFixed(1) || 'N/A'}
+            <p className="text-sm text-gray-600 mt-1">
+              {movie.market_action || 'Historical Weighted Score'}
             </p>
-            <p className="text-sm text-gray-600 mt-1">Social sentiment</p>
           </div>
         </div>
+
+        {movie.hws_breakdown && (
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold mb-4">HWS Score Breakdown</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="p-4 bg-purple-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Director (25%)</p>
+                <p className="text-2xl font-bold text-purple-600">
+                  {movie.hws_breakdown.director_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.director_score}
+                </p>
+              </div>
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Hero (15%)</p>
+                <p className="text-2xl font-bold text-blue-600">
+                  {movie.hws_breakdown.hero_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.hero_score}
+                </p>
+              </div>
+              <div className="p-4 bg-pink-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Heroine (8%)</p>
+                <p className="text-2xl font-bold text-pink-600">
+                  {movie.hws_breakdown.heroine_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.heroine_score}
+                </p>
+              </div>
+              <div className="p-4 bg-green-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Genre (20%)</p>
+                <p className="text-2xl font-bold text-green-600">
+                  {movie.hws_breakdown.genre_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.genre_score}
+                </p>
+              </div>
+              <div className="p-4 bg-yellow-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Popularity (15%)</p>
+                <p className="text-2xl font-bold text-yellow-600">
+                  {movie.hws_breakdown.popularity_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.popularity_score}
+                </p>
+              </div>
+              <div className="p-4 bg-indigo-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Predicted IMDb (10%)</p>
+                <p className="text-2xl font-bold text-indigo-600">
+                  {movie.hws_breakdown.predicted_imdb_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.predicted_imdb?.toFixed(0)}
+                </p>
+              </div>
+              <div className="p-4 bg-orange-50 rounded-lg">
+                <p className="text-xs text-gray-600 mb-1">Producer (7%)</p>
+                <p className="text-2xl font-bold text-orange-600">
+                  {movie.hws_breakdown.producer_contribution?.toFixed(1)}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Score: {movie.hws_breakdown.producer_score}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {movie.cast && movie.cast.length > 0 && (
           <div className="mb-8">
@@ -171,16 +265,22 @@ export default function MovieDetail() {
           </div>
         )}
 
-        <div className="flex space-x-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Link
+            to={`/movies/${id}/public-pulse`}
+            className="btn btn-primary"
+          >
+            Public Pulse Analytics
+          </Link>
           <Link
             to={`/movies/${id}/competitors`}
-            className="btn btn-primary flex-1"
+            className="btn btn-secondary"
           >
             Analyze Competitors
           </Link>
           <Link
             to={`/movies/${id}/release-analysis`}
-            className="btn btn-secondary flex-1"
+            className="btn btn-secondary"
           >
             Release Strategy
           </Link>

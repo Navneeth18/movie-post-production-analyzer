@@ -1,10 +1,11 @@
 from fastapi import APIRouter
-from app.api.endpoints import analytics, calculator, marketing, strategy, auth, movies, release_strategy
+from app.api.endpoints import analytics, calculator, marketing, strategy, auth, movies, release_strategy, public_pulse
 
 api_router = APIRouter()
 
 api_router.include_router(auth.router, prefix="/auth", tags=["authentication"])
 api_router.include_router(movies.router, prefix="/movies", tags=["movies"])
+api_router.include_router(public_pulse.router, prefix="/public-pulse", tags=["public-pulse"])
 api_router.include_router(release_strategy.router, prefix="/release-strategy", tags=["release-strategy"])
 api_router.include_router(analytics.router, prefix="/analytics", tags=["analytics"])
 api_router.include_router(calculator.router, prefix="/calculator", tags=["calculator"])

@@ -10,12 +10,11 @@ class CastMemberCreate(BaseModel):
 class MovieCreate(BaseModel):
     title: str
     director: str
-    genre: str
+    genres: List[str]  # Multiple genres
     budget: Optional[float] = None
     budget_currency: str = "INR"
     release_date: Optional[datetime] = None
-    language: str
-    themes: Optional[str] = None
+    languages: List[str]  # Multiple languages
     region: str
     cast: List[CastMemberCreate] = []
     status: str = "pre-production"
@@ -23,11 +22,10 @@ class MovieCreate(BaseModel):
 class MovieUpdate(BaseModel):
     title: Optional[str] = None
     director: Optional[str] = None
-    genre: Optional[str] = None
+    genres: Optional[List[str]] = None
     budget: Optional[float] = None
     release_date: Optional[datetime] = None
-    language: Optional[str] = None
-    themes: Optional[str] = None
+    languages: Optional[List[str]] = None
     region: Optional[str] = None
     cast: Optional[List[CastMemberCreate]] = None
     status: Optional[str] = None
@@ -36,23 +34,28 @@ class MovieResponse(BaseModel):
     id: str
     title: str
     director: str
-    genre: str
-    budget: Optional[float]
-    budget_currency: str
-    release_date: Optional[datetime]
-    language: str
-    themes: Optional[str]
-    region: str
-    cast: List[dict]
+    genres: List[str]
+    budget: Optional[float] = None
+    budget_currency: str = "INR"
+    release_date: Optional[datetime] = None
+    languages: List[str] = []
+    region: Optional[str] = None
+    cast: List[dict] = []
     producer_id: str
-    status: str
-    tag: str  # "past" or "current"
-    hws_score: Optional[float]
-    cast_score: Optional[float]
-    historic_score: Optional[float]
-    public_pulse_score: Optional[float]
-    created_at: datetime
-    updated_at: datetime
+    status: str = "pre-production"
+    tag: str = "current"  # "past" or "current"
+    hws_score: Optional[float] = None
+    category: Optional[str] = None  # BIG, MEDIUM, SMALL
+    market_action: Optional[str] = None
+    hws_breakdown: Optional[dict] = None  # Detailed HWS breakdown
+    cast_score: Optional[float] = None
+    historic_score: Optional[float] = None
+    public_pulse_score: Optional[float] = None
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    
+    class Config:
+        extra = 'ignore'  # Ignore extra fields from database
 
 class CompetitorRequest(BaseModel):
     competitor_movie_id: str

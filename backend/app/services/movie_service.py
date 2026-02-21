@@ -1,16 +1,25 @@
 from typing import List, Optional
 from datetime import datetime
+from app.services.hws_calculator import HWSCalculator
 
 class MovieService:
     @staticmethod
-    def calculate_cast_score(cast: List[dict]) -> float:
-        """Calculate cast score based on star power"""
+    async def calculate_cast_score(cast: List[dict]) -> float:
+        """
+        Calculate cast score using artist grades from database
+        Uses exponential grading: Grade 1=100, Grade 2=40, Grade 3=10
+        """
         if not cast:
-            return 50.0
+            return 10.0
         
-        total_star_power = sum(member.get('star_power', 50) for member in cast)
-        avg_star_power = total_star_power / len(cast)
-        return min(avg_star_power, 100.0)
+        # Calculate hero and heroine scores
+        hero_score = await HWSCalculator.calculate_hero_score(cast)
+        heroine_score = await HWSCalculator.calculate_heroine_score(cast)
+        
+        # Weighted average: 60% hero, 40% heroine
+        cast_score = (hero_score * 0.6) + (heroine_score * 0.4)
+        
+        return round(cast_score, 2)
     
     @staticmethod
     def calculate_historic_score(director: str, genre: str) -> float:

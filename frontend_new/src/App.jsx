@@ -6,7 +6,9 @@ import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Movies from './pages/Movies'
 import CreateMovie from './pages/CreateMovie'
+import EditMovie from './pages/EditMovie'
 import MovieDetail from './pages/MovieDetail'
+import PublicPulse from './pages/PublicPulse'
 import CompetitorAnalysis from './pages/CompetitorAnalysis'
 import ReleaseDateAnalysis from './pages/ReleaseDateAnalysis'
 import Layout from './components/Layout'
@@ -33,6 +35,8 @@ function App() {
           <Route path="movies" element={<Movies />} />
           <Route path="movies/create" element={<CreateMovie />} />
           <Route path="movies/:id" element={<MovieDetail />} />
+          <Route path="movies/:id/edit" element={<EditMovie />} />
+          <Route path="movies/:id/public-pulse" element={<PublicPulse />} />
           <Route path="movies/:id/competitors" element={<CompetitorAnalysis />} />
           <Route path="movies/:id/release-analysis" element={<ReleaseDateAnalysis />} />
         </Route>

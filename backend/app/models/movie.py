@@ -36,12 +36,11 @@ class Movie(BaseModel):
     """New movie model for producer projects"""
     title: str
     director: str
-    genre: str
+    genres: List[str]  # Multiple genres
     budget: Optional[float] = None
     budget_currency: str = "INR"
     release_date: Optional[datetime] = None
-    language: str
-    themes: Optional[str] = None
+    languages: List[str]  # Multiple languages
     region: str
     cast: List[CastMember] = []
     producer_id: str  # User ID of the producer

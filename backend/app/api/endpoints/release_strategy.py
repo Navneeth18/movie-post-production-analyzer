@@ -22,7 +22,7 @@ async def analyze_release_date_range(
     current_user: dict = Depends(get_current_user)
 ):
     """
-    Analyze competitors in a specific date range for a producer's movie.
+    Analyze competitors in a specific date range for a producer's movie (current movies only).
     Shows big/medium/small movies and their competitive strength.
     """
     db = get_database()
@@ -34,6 +34,13 @@ async def analyze_release_date_range(
     
     if movie["producer_id"] != str(current_user["_id"]):
         raise HTTPException(status_code=403, detail="Not authorized")
+    
+    # Check if it's a current movie
+    if movie.get("tag") == "past":
+        raise HTTPException(
+            status_code=400, 
+            detail="Release strategy analysis is only available for current movies"
+        )
     
     # Calculate date range (default ±30 days if not provided)
     target_date = request.target_release_date or movie.get("release_date")
@@ -119,7 +126,7 @@ async def generate_pr_strategy(
     current_user: dict = Depends(get_current_user)
 ):
     """
-    Generate AI-powered PR strategy using DeepSeek-R1 based on competitive landscape.
+    Generate AI-powered PR strategy using DeepSeek-R1 (current movies only).
     """
     db = get_database()
     
@@ -130,6 +137,13 @@ async def generate_pr_strategy(
     
     if movie["producer_id"] != str(current_user["_id"]):
         raise HTTPException(status_code=403, detail="Not authorized")
+    
+    # Check if it's a current movie
+    if movie.get("tag") == "past":
+        raise HTTPException(
+            status_code=400, 
+            detail="PR strategy generation is only available for current movies"
+        )
     
     # Get competitor data if provided
     competitors_data = []
@@ -201,7 +215,7 @@ async def get_release_date_decision(
     current_user: dict = Depends(get_current_user)
 ):
     """
-    AI-powered release date decision using DeepSeek-R1.
+    AI-powered release date decision using DeepSeek-R1 (current movies only).
     Analyzes competitive landscape and recommends optimal release date.
     """
     db = get_database()
@@ -213,6 +227,13 @@ async def get_release_date_decision(
     
     if movie["producer_id"] != str(current_user["_id"]):
         raise HTTPException(status_code=403, detail="Not authorized")
+    
+    # Check if it's a current movie
+    if movie.get("tag") == "past":
+        raise HTTPException(
+            status_code=400, 
+            detail="Release date decision is only available for current movies"
+        )
     
     # Get date range analysis first
     target_date = request.target_release_date or movie.get("release_date")

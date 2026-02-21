@@ -123,13 +123,24 @@ export default function Dashboard() {
                 className="block p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all"
               >
                 <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{movie.title}</h3>
-                    <p className="text-sm text-gray-600 mt-1">
-                      {movie.genre} • {movie.language} • {movie.director}
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <h3 className="font-semibold text-gray-900">{movie.title}</h3>
+                      {movie.category && (
+                        <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                          movie.category === 'BIG' ? 'bg-purple-100 text-purple-800' :
+                          movie.category === 'MEDIUM' ? 'bg-blue-100 text-blue-800' :
+                          'bg-gray-100 text-gray-800'
+                        }`}>
+                          {movie.category}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      {movie.genres?.[0] || movie.genre} • {movie.languages?.[0] || movie.language} • {movie.director}
                     </p>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right ml-4">
                     <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
                       movie.status === 'awaiting-release' ? 'bg-orange-100 text-orange-800' :
                       movie.status === 'production' ? 'bg-green-100 text-green-800' :
@@ -137,9 +148,14 @@ export default function Dashboard() {
                     }`}>
                       {movie.status}
                     </span>
-                    <p className="text-sm text-gray-600 mt-2">
-                      Cast Score: <span className="font-semibold">{movie.cast_score?.toFixed(1) || 'N/A'}</span>
-                    </p>
+                    <div className="flex space-x-3 mt-2 text-sm text-gray-600">
+                      <div>
+                        Cast: <span className="font-semibold">{movie.cast_score?.toFixed(0) || 'N/A'}</span>
+                      </div>
+                      <div>
+                        HWS: <span className="font-semibold">{movie.hws_score?.toFixed(0) || 'N/A'}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Link>

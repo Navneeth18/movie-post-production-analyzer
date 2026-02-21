@@ -51,6 +51,20 @@ export const movieAPI = {
   getCompetitors: (movieId) => api.get(`/movies/${movieId}/competitors`),
 }
 
+// Public Pulse endpoints
+export const publicPulseAPI = {
+  addTrailer: (movieId, youtubeUrl) => 
+    api.post(`/public-pulse/${movieId}/add-trailer`, { youtube_url: youtubeUrl }),
+  refreshPulse: (movieId) => 
+    api.post(`/public-pulse/${movieId}/refresh-pulse`),
+  getCurrentPulse: (movieId) => 
+    api.get(`/public-pulse/${movieId}/current`),
+  getPulseHistory: (movieId) => 
+    api.get(`/public-pulse/${movieId}/history`),
+  removeTrailer: (movieId) => 
+    api.delete(`/public-pulse/${movieId}/trailer`),
+}
+
 // Release strategy endpoints
 export const releaseStrategyAPI = {
   analyzeDateRange: (data) => api.post('/release-strategy/analyze-date-range', data),
